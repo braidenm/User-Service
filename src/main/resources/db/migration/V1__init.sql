@@ -1,0 +1,6 @@
+CREATE TABLE USER (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(64) NOT NULL
+);
+
+INSERT INTO user (name) values ('admin')
