@@ -31,6 +31,7 @@ class UserServiceApplicationTests {
 	@Test
 	void controllerTestGetUsers() {
 		List<UserEntity> users = userController.getAll();
-		assert users != null;
+		assert users == null;
+
 	}
 }
