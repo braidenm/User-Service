@@ -3,6 +3,7 @@ services:
   user-service:
     build:
       context: .
+      target: development
     ports:
       - 8000:8000
       - 8080:8080
@@ -11,12 +12,12 @@ services:
       - MYSQL_URL=jdbc:mysql://mysqlserver/usersqlserver
     volumes:
       - ./:/app
-    command: java -jar app.jar -Dspring-boot.run.profiles=mysql -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+#    command: java -jar app.jar -Dspring-boot.run.profiles=mysql -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
 
-  user-sql-server:
+  mysql:
     image: mysql:8.0.23
     ports:
-      - 3306:3306
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_ALLOW_EMPTY_PASSWORD=true

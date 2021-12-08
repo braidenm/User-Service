@@ -13,10 +13,10 @@ FROM base as build
 RUN ./gradlew build || return 0
 
 FROM base as development
-CMD ["./gradlew", "boot-run", "-Dspring-boot.run.profiles=mysql", "-Dspring-boot.run.jvmArguments='-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000'"]
+CMD ["./gradlew", "bootRun", "-Dspring-boot.run.profiles=mysql", "-Dspring-boot.run.jvmArguments='-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000'"]
 
 FROM openjdk:11-jre-slim as production
 EXPOSE 8080
 
-COPY /build/libs/*.jar app.jar
+COPY --from=build /user-service-*.jar /app.jar
 CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/user-service.jar"]
