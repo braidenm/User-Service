@@ -18,5 +18,5 @@ CMD ["./gradlew", "boot-run", "-Dspring-boot.run.profiles=mysql", "-Dspring-boot
 FROM openjdk:11-jre-slim as production
 EXPOSE 8080
 
-COPY build/libs/*.jar app.jar
+COPY /build/libs/*.jar app.jar
 CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/user-service.jar"]
