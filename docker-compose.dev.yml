@@ -12,10 +12,12 @@ services:
       - MYSQL_URL=jdbc:mysql://mysqlserver/usersqlserver
     volumes:
       - ./:/app
-#    command: java -jar app.jar -Dspring-boot.run.profiles=mysql -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
+  #    command: java -jar app.jar -Dspring-boot.run.profiles=mysql -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
 
   mysql:
     image: mysql:8.0.23
+    cap_add:
+      - ALL
     ports:
       - "3306:3306"
     environment:
